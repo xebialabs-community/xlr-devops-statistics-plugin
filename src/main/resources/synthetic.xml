@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2019 XEBIALABS
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+-->
+
+<synthetic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://www.xebialabs.com/deployit/synthetic"
+           xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd">
+
+    <type type="statistics.TaskMetricsTile" label="Task Metrics Tile" extends="xlrelease.Tile"
+    description="Visualizes task executions and statuses as a time series and pie chart snapshot combination">
+        <property default="release,folder,global" hidden="true" name="supportedScopes" kind="list_of_string"/>
+        <property name="uri" hidden="true" default="TaskMetricsTile/summary-view.html"/>
+        <property name="detailsUri" hidden="true" default="TaskMetricsTile/details-view.html"/>
+        <property name="title" description="Tile title" default="Task Metrics"/>
+        <property name="fromDateTime" category="input" label="From Datetime" required="false" kind="date"
+        description="Filter to only include tasks executed after this datetime"/>
+        <property name="toDateTime" category="input" label="To Datetime" required="false" kind="date"
+        description="Filter to only include tasks executed before this datetime"/>
+        <property name="dateAggregation" category="input" required="true" kind="enum" default="Month"
+        description="A time period for aggregation.  This value determines how granular the date axis is.">
+            <enum-values>
+            <value>Day</value>
+            <value>Month</value>
+            <value>Year</value>
+            </enum-values>
+        </property>
+        <property name="releaseTags" category="input" label="Release Tags" kind="set_of_string" required="true"
+        description="Only include releases which have one of these tags"/>
+        <property name="taskTags" category="input" label="Task Tags" kind="set_of_string" required="true"
+        description="Only include release tasks which have one of these tags"/>
+    </type>
+
+</synthetic>

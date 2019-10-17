@@ -1,0 +1,9 @@
+.gradle
+.DS_Store
+build
+temp
+supervisord.*
+.classpath
+.project
+.settings/
+bin/

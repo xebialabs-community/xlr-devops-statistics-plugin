@@ -1,0 +1,37 @@
+buildscript {
+  repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+      url 'https://dist.xebialabs.com/public/maven2'
+    }
+  }
+
+}
+
+plugins {
+  id "com.github.hierynomus.license" version "0.14.0"
+  id 'nebula.release' version '6.0.0'
+  id "com.github.hierynomus.jython" version "0.8.0"
+}
+
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'maven'
+
+if (!project.hasProperty('release.scope')) {
+  project.ext['release.scope'] = 'patch'
+}
+
+if (!project.hasProperty('release.useLastTag')) {
+  project.ext['release.useLastTag'] = true
+}
+
+license {
+  header rootProject.file('LICENSE.md')
+  strictCheck false
+  ext.year = Calendar.getInstance().get(Calendar.YEAR)
+  ext.name = 'XEBIALABS'
+  excludes(["**/*.json", "**/*.min.js"])
+}
