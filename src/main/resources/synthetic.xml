@@ -39,4 +39,30 @@
         description="Only include release tasks which have one of these tags"/>
     </type>
 
+    <type type="statistics.DeliverySizeTile" label="Delivery Size Tile" extends="xlrelease.Tile"
+    description="Visualizes the size of recent deliveries, with respect to tracked items and associated releases">
+        <property default="release,folder,global" hidden="true" name="supportedScopes" kind="list_of_string"/>
+        <property name="uri" hidden="true" default="DeliverySizeTile/summary-view.html"/>
+        <property name="detailsUri" hidden="true" default="DeliverySizeTile/details-view.html"/>
+        <property name="title" description="Tile title" default="Size of Latest Deliveries"/>
+        <property name="deliveryScope" category="input" required="true" kind="enum" default="COMPLETED"
+        description="Include deliveries that are progress, completed, or all (both).">
+            <enum-values>
+            <value>ALL</value>
+            <value>IN_PROGRESS</value>
+            <value>COMPLETED</value>
+            </enum-values>
+        </property>
+        <property name="maxDeliveriesCount" category="input" kind="integer" required="true" label="Max Count" default="100"
+        description="How many of the latest deliveries to show in the dashboard tile."/>
+        <property name="deliveryOrderMode" category="input" label="Latest" kind="enum" required="true"
+        description="Which datetime should be used when gathering the latest deliveries.">
+            <enum-values>
+            <value>START_DATE</value>
+            <value>END_DATE</value>
+            <value>CREATED_DATE</value>
+            </enum-values>
+        </property>
+    </type>
+
 </synthetic>
