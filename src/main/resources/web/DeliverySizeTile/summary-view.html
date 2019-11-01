@@ -41,6 +41,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                         axisPointer:{
                             show: true,
                             type : 'cross',
+                            label: {
+                                show: false
+                            },
                             lineStyle: {
                                 type : 'dashed',
                                 width : 1
@@ -128,6 +131,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                         }
                     }]
                 };
+                myChart.on('click', 'series', function (event) {
+                    top.location.href = '/#/deliveries/' + event.data[6]
+                });
                 if (option && typeof option === "object") {
                     myChart.setOption(option, true);
                 }
