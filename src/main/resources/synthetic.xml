@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!--
 
     Copyright 2019 XEBIALABS
@@ -10,59 +10,44 @@
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -->
-
-<synthetic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xmlns="http://www.xebialabs.com/deployit/synthetic"
-           xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd">
-
-    <type type="statistics.TaskMetricsTile" label="Task Metrics Tile" extends="xlrelease.Tile"
-    description="Visualizes task executions and statuses as a time series and pie chart snapshot combination">
-        <property default="release,folder,global" hidden="true" name="supportedScopes" kind="list_of_string"/>
-        <property name="uri" hidden="true" default="TaskMetricsTile/summary-view.html"/>
-        <property name="detailsUri" hidden="true" default="TaskMetricsTile/details-view.html"/>
-        <property name="title" description="Tile title" default="Task Metrics"/>
-        <property name="fromDateTime" category="input" label="From Datetime" required="false" kind="date"
-        description="Filter to only include tasks executed after this datetime"/>
-        <property name="toDateTime" category="input" label="To Datetime" required="false" kind="date"
-        description="Filter to only include tasks executed before this datetime"/>
-        <property name="dateAggregation" category="input" required="true" kind="enum" default="Month"
-        description="A time period for aggregation.  This value determines how granular the date axis is.">
-            <enum-values>
-            <value>Day</value>
-            <value>Month</value>
-            <value>Year</value>
-            </enum-values>
-        </property>
-        <property name="releaseTags" category="input" label="Release Tags" kind="set_of_string" required="true"
-        description="Only include releases which have one of these tags"/>
-        <property name="taskTags" category="input" label="Task Tags" kind="set_of_string" required="true"
-        description="Only include release tasks which have one of these tags"/>
-    </type>
-
-    <type type="statistics.DeliverySizeTile" label="Delivery Size Tile" extends="xlrelease.Tile"
-    description="Visualizes the size of recent deliveries, with respect to tracked items and associated releases">
-        <property default="release,folder,global" hidden="true" name="supportedScopes" kind="list_of_string"/>
-        <property name="uri" hidden="true" default="DeliverySizeTile/summary-view.html"/>
-        <property name="detailsUri" hidden="true" default="DeliverySizeTile/details-view.html"/>
-        <property name="title" description="Tile title" default="Size of Latest Deliveries"/>
-        <property name="deliveryScope" category="input" required="true" kind="enum" default="COMPLETED"
-        description="Include deliveries that are progress, completed, or all (both).">
-            <enum-values>
-            <value>ALL</value>
-            <value>IN_PROGRESS</value>
-            <value>COMPLETED</value>
-            </enum-values>
-        </property>
-        <property name="maxDeliveriesCount" category="input" kind="integer" required="true" label="Max Count" default="100"
-        description="How many of the latest deliveries to show in the dashboard tile."/>
-        <property name="deliveryOrderMode" category="input" label="Latest" kind="enum" required="true"
-        description="Which datetime should be used when gathering the latest deliveries.">
-            <enum-values>
-            <value>START_DATE</value>
-            <value>END_DATE</value>
-            <value>CREATED_DATE</value>
-            </enum-values>
-        </property>
-    </type>
-
+<synthetic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.xebialabs.com/deployit/synthetic" xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd">
+  <!-- Tiles -->
+  <type type="statistics.DeliverySizeTile" label="Delivery Size Tile" extends="xlrelease.Tile" description="Visualizes the size of recent deliveries, with respect to tracked items and associated releases">
+    <property name="supportedScopes" kind="list_of_string" hidden="true" default="release,folder,global"/>
+    <property name="uri" hidden="true" default="DeliverySizeTile/summary-view.html"/>
+    <property name="detailsUri" hidden="true" default="DeliverySizeTile/details-view.html"/>
+    <property name="title" default="Size of Latest Deliveries" description="Tile title"/>
+    <property name="deliveryScope" category="input" kind="enum" required="true" default="COMPLETED" description="Include deliveries that are progress, completed, or all (both).">
+      <enum-values>
+        <value>ALL</value>
+        <value>IN_PROGRESS</value>
+        <value>COMPLETED</value>
+      </enum-values>
+    </property>
+    <property name="maxDeliveriesCount" category="input" kind="integer" required="true" default="100" label="Max Count" description="How many of the latest deliveries to show in the dashboard tile."/>
+    <property name="deliveryOrderMode" category="input" kind="enum" required="true" label="Latest" description="Which datetime should be used when gathering the latest deliveries.">
+      <enum-values>
+        <value>START_DATE</value>
+        <value>END_DATE</value>
+        <value>CREATED_DATE</value>
+      </enum-values>
+    </property>
+  </type>
+  <type type="statistics.TaskMetricsTile" label="Task Metrics Tile" extends="xlrelease.Tile" description="Visualizes task executions and statuses as a time series and pie chart snapshot combination">
+    <property name="supportedScopes" kind="list_of_string" hidden="true" default="release,folder,global"/>
+    <property name="uri" hidden="true" default="TaskMetricsTile/summary-view.html"/>
+    <property name="detailsUri" hidden="true" default="TaskMetricsTile/details-view.html"/>
+    <property name="title" default="Task Metrics" description="Tile title"/>
+    <property name="fromDateTime" category="input" kind="date" required="false" label="From Datetime" description="Filter to only include tasks executed after this datetime"/>
+    <property name="toDateTime" category="input" kind="date" required="false" label="To Datetime" description="Filter to only include tasks executed before this datetime"/>
+    <property name="dateAggregation" category="input" kind="enum" required="true" default="Month" description="A time period for aggregation.  This value determines how granular the date axis is.">
+      <enum-values>
+        <value>Day</value>
+        <value>Month</value>
+        <value>Year</value>
+      </enum-values>
+    </property>
+    <property name="releaseTags" category="input" kind="set_of_string" required="true" label="Release Tags" description="Only include releases which have one of these tags"/>
+    <property name="taskTags" category="input" kind="set_of_string" required="true" label="Task Tags" description="Only include release tasks which have one of these tags"/>
+  </type>
 </synthetic>
