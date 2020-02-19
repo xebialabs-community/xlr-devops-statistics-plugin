@@ -50,4 +50,28 @@
     <property name="releaseTags" category="input" kind="set_of_string" required="true" label="Release Tags" description="Only include releases which have one of these tags"/>
     <property name="taskTags" category="input" kind="set_of_string" required="true" label="Task Tags" description="Only include release tasks which have one of these tags"/>
   </type>
+  <type type="statistics.ApplicationsActivityTile" label="Applications Activity Tile" extends="xlrelease.Tile" description="Shows the active releases associated with select applications">
+    <property name="supportedScopes" kind="list_of_string" hidden="true" default="release,folder,global"/>
+    <property name="scriptLocation" hidden="true" default="statistics/OperationsActivity.py"/>
+    <property name="uri" hidden="true" default="OperationsActivity/summary-view.html"/>
+    <property name="width" kind="integer" default="3"/>
+    <property name="height" kind="integer" default="3"/>
+    <property name="title" default="Application Activites" description="Tile title"/>
+    <property name="applicationNames" category="input" required="true" kind="set_of_string"/>
+    <property name="upstreamAttribute" category="input" default="Applications" hidden="true"/>
+    <property name="fromDateTime" category="input" kind="date" required="false" label="From Datetime" description="Filter to only include releases executed after this datetime"/>
+    <property name="releaseTags" category="input" kind="set_of_string" required="false" label="Release Tags" description="Only include releases which have one of these tags"/>
+  </type>
+  <type type="statistics.EnvironmentsActivityTile" label="Environments Activity Tile" extends="xlrelease.Tile" description="Shows the active releases associated with select environments">
+    <property name="supportedScopes" kind="list_of_string" hidden="true" default="release,folder,global"/>
+    <property name="scriptLocation" hidden="true" default="statistics/OperationsActivity.py"/>
+    <property name="uri" hidden="true" default="OperationsActivity/summary-view.html"/>
+    <property name="width" kind="integer" default="3"/>
+    <property name="height" kind="integer" default="3"/>
+    <property name="title" default="Environment Activities" description="Tile title"/>
+    <property name="upstreamAttribute" category="input" default="Environments" hidden="true"/>
+    <property name="environmentNames" category="input" required="true" kind="set_of_string"/>
+    <property name="fromDateTime" category="input" kind="date" required="false" label="From Datetime" description="Filter to only include releases executed after this datetime"/>
+    <property name="releaseTags" category="input" kind="set_of_string" required="false" label="Release Tags" description="Only include releases which have one of these tags"/>
+  </type>
 </synthetic>

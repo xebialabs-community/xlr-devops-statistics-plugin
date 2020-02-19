@@ -1,0 +1,89 @@
+/**
+ * Copyright 2020 XEBIALABS
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+body.chart {
+    margin: 0px;
+    font-family: OpenSans, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #333;
+}
+
+#chart {
+    width: 100vw;
+    height: 100vh;
+}
+
+.notes {
+    position: absolute;
+    bottom: 0;
+    padding: 0px 15px;
+}
+
+.left-notes {
+    left: 0;
+    text-align: left;
+}
+
+.right-notes {
+    right: 0;
+    text-align: right;
+}
+
+#releases-view {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+}
+
+#releases-view>table {
+    margin: 0 auto;
+}
+
+th {
+    text-align: center;
+    font-size: 16px;
+    border-bottom: 1px solid #333;
+    display: block;
+    box-sizing: border-box;
+    clear: both;
+}
+
+td {
+    text-align: center;
+    display: block;
+    box-sizing: border-box;
+    clear: both;
+}
+
+button.notes {
+    font-family: OpenSans, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    background-color: rgb(0, 121, 188);
+    ;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    height: 30px;
+    line-height: 28px;
+    border-radius: 4px;
+}
+
+a {
+    color: rgb(65, 76, 88);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
