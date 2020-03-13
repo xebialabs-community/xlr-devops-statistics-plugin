@@ -15,7 +15,7 @@ window.addEventListener("xlrelease.load", function() {
         app.title = 'Task Metrics';
         option = {
             legend: {
-                bottom: 0
+                bottom: 6
             },
             tooltip: {
                 trigger: 'axis',
