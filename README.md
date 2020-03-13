@@ -34,6 +34,9 @@ __Available Dashboard Tiles__: Delivery Size Tile, Task Metrics Tile, Applicatio
 
 ### Tiles
 
+![plugin dashboard tiles screenshot 1](images/tiles-1.png)
+![plugin dashboard tiles screenshot 2](images/tiles-2.png)
+
 #### Delivery Size Tile
 Properties:
 * Title  
