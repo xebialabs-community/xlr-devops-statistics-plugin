@@ -11,22 +11,17 @@
 -->
 <!DOCTYPE html>
 <html>
-  <head>
-    <!-- Bootstrap CSS dependency -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script
-            src="https://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous">
-    </script>
+
+<head>
+    <script src="../vendor/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="../vendor/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 <script>
-    window.addEventListener("xlrelease.load", function () {
-        window.xlrelease.queryTileData(function (response) {
+    window.addEventListener("xlrelease.load", function() {
+        window.xlrelease.queryTileData(function(response) {
             var deliveryPoints = response.data.data.deliveryPoints;
-            deliveryPoints.forEach(function (delivery) {
+            deliveryPoints.forEach(function(delivery) {
                 $("#deliveryPoints").append(
                     '<tr>' +
                     '<td><a target="_parent" href="/#/deliveries/' + delivery[6] + '">' + delivery[0] + '</a></td>' +
@@ -41,20 +36,22 @@
         });
     });
 </script>
+
 <body>
-<table class="table table-rounded table-striped">
-    <thead>
-    <tr>
-        <th>Delivery Title</th>
-        <th>Releases</th>
-        <th>Tracked Items</th>
-        <th>Status</th>
-        <th>Start Date</th>
-        <th>End Date</th>
-    </tr>
-    </thead>
-    <tbody id="deliveryPoints">
-    </tbody>
-</table>
+    <table class="table table-rounded table-striped">
+        <thead>
+            <tr>
+                <th>Delivery Title</th>
+                <th>Releases</th>
+                <th>Tracked Items</th>
+                <th>Status</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+            </tr>
+        </thead>
+        <tbody id="deliveryPoints">
+        </tbody>
+    </table>
 </body>
+
 </html>

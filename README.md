@@ -30,7 +30,7 @@ __Available Tasks__: None
 
 __Available Triggers__: None
 
-__Available Dashboard Tiles__: Delivery Size Tile, Task Metrics Tile
+__Available Dashboard Tiles__: Delivery Size Tile, Task Metrics Tile, Applications Activity Tile, Environments Activity Tile
 
 ### Tiles
 
@@ -59,6 +59,26 @@ Properties:
    * Only include releases which have one of these tags
 * Task Tags _input_ 
    * Only include release tasks which have one of these tags
+
+#### Applications Activity Tile
+Properties:
+* Title  
+   * Tile title
+* Application Names _input_ 
+* From Datetime _input_ 
+   * Filter to only include releases executed after this datetime
+* Release Tags _input_ 
+   * Only include releases which have one of these tags
+
+#### Environments Activity Tile
+Properties:
+* Title  
+   * Tile title
+* Environment Names _input_ 
+* From Datetime _input_ 
+   * Filter to only include releases executed after this datetime
+* Release Tags _input_ 
+   * Only include releases which have one of these tags
 
 ## Contributing
 
