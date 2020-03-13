@@ -16,6 +16,8 @@
     <property name="supportedScopes" kind="list_of_string" hidden="true" default="release,folder,global"/>
     <property name="uri" hidden="true" default="DeliverySizeTile/summary.html"/>
     <property name="detailsUri" hidden="true" default="DeliverySizeTile/details.html"/>
+    <property name="width" kind="integer" default="3"/>
+    <property name="height" kind="integer" default="3"/>
     <property name="title" default="Size of Latest Deliveries" description="Tile title"/>
     <property name="deliveryScope" category="input" kind="enum" required="true" default="COMPLETED" description="Include deliveries that are progress, completed, or all (both).">
       <enum-values>
