@@ -27,7 +27,7 @@
       </enum-values>
     </property>
     <property name="maxDeliveriesCount" category="input" kind="integer" required="true" default="100" label="Max Count" description="How many of the latest deliveries to show in the dashboard tile."/>
-    <property name="deliveryOrderMode" category="input" kind="enum" required="true" label="Latest" description="Which datetime should be used when gathering the latest deliveries.">
+    <property name="deliveryOrderMode" category="input" kind="enum" required="true" label="Latest" default="CREATED_DATE" description="Which datetime should be used when gathering the latest deliveries.">
       <enum-values>
         <value>START_DATE</value>
         <value>END_DATE</value>
