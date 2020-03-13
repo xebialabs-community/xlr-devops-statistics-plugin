@@ -26,27 +26,38 @@ for statusIndex in statusIndexes:
 deliveryFilters.statuses = statusFilter
 
 deliveryPoints = []
-pageSizes = [min(maxDeliveriesCount - i, 100) for i in range(0, maxDeliveriesCount, 100)]
+pageSizes = [
+    min(maxDeliveriesCount - i, 100) for i in range(0, maxDeliveriesCount, 100)
+]
 for page in range(len(pageSizes)):
-    deliveries = _deliveryApi.searchDeliveries(deliveryFilters, page, pageSizes[page], DeliveryOrderMode.valueOf(deliveryOrderMode))
+    deliveries = _deliveryApi.searchDeliveries(
+        deliveryFilters,
+        page,
+        pageSizes[page],
+        DeliveryOrderMode.valueOf(deliveryOrderMode),
+    )
     for delivery in deliveries:
         deliveryPoints.append(
             [
                 delivery.title,
                 str(len(delivery.releaseIds)),
                 str(len(delivery.trackedItems)),
-                str(delivery.status).replace('_',' '),
+                str(delivery.status).replace("_", " "),
                 str(delivery.startDate),
                 str(delivery.endDate),
-                delivery.id
+                delivery.id,
             ]
         )
 
-inProgressPoints = [delivery for delivery in deliveryPoints if str(delivery[3]) == "IN PROGRESS"]
-completedPoints = [delivery for delivery in deliveryPoints if str(delivery[3]) == "COMPLETED"]
+inProgressPoints = [
+    delivery for delivery in deliveryPoints if str(delivery[3]) == "IN PROGRESS"
+]
+completedPoints = [
+    delivery for delivery in deliveryPoints if str(delivery[3]) == "COMPLETED"
+]
 
 data = {
     "deliveryPoints": deliveryPoints,
     "inProgressPoints": inProgressPoints,
-    "completedPoints": completedPoints
+    "completedPoints": completedPoints,
 }

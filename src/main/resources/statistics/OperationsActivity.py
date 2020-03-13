@@ -17,9 +17,7 @@ for releaseTag in releaseTags:
     releaseFilters.tags = [releaseTag]
 if fromDateTime not in [None, ""]:
     releaseFilters.from = fromDateTime
-releases = _releaseApi.searchReleases(
-    releaseFilters
-)
+releases = _releaseApi.searchReleases(releaseFilters)
 
 connections = []
 for release in releases:
@@ -27,21 +25,31 @@ for release in releases:
         for task in phase.tasks:
             for facet in task.facets:
                 if upstreamAttribute == "Applications":
-                    if _applicationApi.getById(facet.applicationId).title in applicationNames:
-                        connections.append([
-                            _applicationApi.getById(facet.applicationId).title,
-                            release.title,
-                            _environmentApi.getById(facet.environmentId).title,
-                            release.url
-                        ])
+                    if (
+                        _applicationApi.getById(facet.applicationId).title
+                        in applicationNames
+                    ):
+                        connections.append(
+                            [
+                                _applicationApi.getById(facet.applicationId).title,
+                                release.title,
+                                _environmentApi.getById(facet.environmentId).title,
+                                release.url,
+                            ]
+                        )
                 elif upstreamAttribute == "Environments":
-                    if _environmentApi.getById(facet.environmentId).title in environmentNames:
-                        connections.append([
-                            _environmentApi.getById(facet.environmentId).title,
-                            release.title,
-                            _applicationApi.getById(facet.applicationId).title,
-                            release.url
-                        ])
+                    if (
+                        _environmentApi.getById(facet.environmentId).title
+                        in environmentNames
+                    ):
+                        connections.append(
+                            [
+                                _environmentApi.getById(facet.environmentId).title,
+                                release.title,
+                                _applicationApi.getById(facet.applicationId).title,
+                                release.url,
+                            ]
+                        )
 
 upstream_labels = []
 release_labels = []
@@ -57,12 +65,14 @@ for connection in connections:
 # Convert to indexes for real-time/interactive filtering
 links = []
 for connection in connections:
-    links.append([
-        upstream_labels.index(connection[0]),
-        release_labels.index(connection[1]),
-        downstream_labels.index(connection[2]),
-        connection[3]
-    ])
+    links.append(
+        [
+            upstream_labels.index(connection[0]),
+            release_labels.index(connection[1]),
+            downstream_labels.index(connection[2]),
+            connection[3],
+        ]
+    )
 
 data = {
     "links": links,
@@ -70,5 +80,7 @@ data = {
     "upstreamAttribute": upstreamAttribute,
     "releases": release_labels,
     "downstream": downstream_labels,
-    "downstreamAttribute": "Applications" if upstreamAttribute == "Environments" else "Environments"
+    "downstreamAttribute": "Applications"
+    if upstreamAttribute == "Environments"
+    else "Environments",
 }

@@ -19,8 +19,13 @@ filterStatuses = ["FAILED", "COMPLETED", "SKIPPED", "ABORTED"]
 
 releaseApi = XLReleaseServiceHolder.getReleaseApi()
 
+
 def tagMatches(tag):
-    if tag not in filterTaskTags or str(task.status) not in filterStatuses or task.startDate is None:
+    if (
+        tag not in filterTaskTags
+        or str(task.status) not in filterStatuses
+        or task.startDate is None
+    ):
         return False
     if fromDateTime is not None:
         if not task.startDate.after(fromDateTime):
@@ -30,14 +35,18 @@ def tagMatches(tag):
             return False
     return True
 
+
 def dateForAggregation(date):
     if dateAggregation == "Year":
-        return str(1900+date.getYear())
+        return str(1900 + date.getYear())
     if dateAggregation == "Month":
-        return '{0}-{1:0=2d}'.format(1900+date.getYear(), 1+date.getMonth())
+        return "{0}-{1:0=2d}".format(1900 + date.getYear(), 1 + date.getMonth())
     if dateAggregation == "Day":
-        return '{0}-{1:0=2d}-{2:0=2d}'.format(1900+date.getYear(), 1+date.getMonth(), date.getDate())
+        return "{0}-{1:0=2d}-{2:0=2d}".format(
+            1900 + date.getYear(), 1 + date.getMonth(), date.getDate()
+        )
     raise Exception("Invalid date aggregation specification")
+
 
 pointTasks = []
 for filterReleaseTag in filterReleaseTags:
@@ -45,9 +54,7 @@ for filterReleaseTag in filterReleaseTags:
     releaseFilters.tags = [filterReleaseTag]
     if fromDateTime not in [None, ""]:
         releaseFilters.from = fromDateTime
-    releases = releaseApi.searchReleases(
-        releaseFilters
-    )
+    releases = releaseApi.searchReleases(releaseFilters)
     for release in releases:
         for phase in release.phases:
             for task in phase.tasks:
@@ -60,7 +67,7 @@ for filterReleaseTag in filterReleaseTags:
                     pointTasks.append(
                         {
                             "status": str(task.status),
-                            "startDate": dateForAggregation(task.startDate)
+                            "startDate": dateForAggregation(task.startDate),
                         }
                     )
 
@@ -71,7 +78,7 @@ for pointTask in pointTasks:
             "FAILED": 0,
             "COMPLETED": 0,
             "SKIPPED": 0,
-            "ABORTED": 0
+            "ABORTED": 0,
         }
     pointTasksByDateAgg[pointTask["startDate"]][pointTask["status"]] += 1
 
@@ -80,7 +87,8 @@ sortedDateAggs.sort()
 plotTasks = [["status"] + [date for date in sortedDateAggs]]
 for filterStatus in filterStatuses:
     plotTasks.append(
-        [filterStatus] + [pointTasksByDateAgg[date][filterStatus] for date in sortedDateAggs]
+        [filterStatus]
+        + [pointTasksByDateAgg[date][filterStatus] for date in sortedDateAggs]
     )
 
 data = {
@@ -88,5 +96,5 @@ data = {
     "tableTasks": pointTasksByDateAgg,
     "dates": sortedDateAggs,
     "datasetName": plotTasks[0][0],
-    "lastDateAgg": plotTasks[0][-1]
+    "lastDateAgg": plotTasks[0][-1],
 }
